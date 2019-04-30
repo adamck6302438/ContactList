@@ -14,13 +14,13 @@
 -(instancetype)init{
     self = [super init];
     if(self){
-        self.contactList = [[NSMutableArray alloc] init];
+        _contactList = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 -(void)addContact:(Contact *)newContact{
-    [self.contactList addObject:newContact];
+    [_contactList addObject: newContact];
 }
 
 @end

@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSString* name;
 @property (nonatomic, assign) NSString* email;
 
+- (instancetype) initWithName: (NSString*)n andEmail: (NSString*)e;
+
 @end
 
 NS_ASSUME_NONNULL_END
