@@ -7,15 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PhoneNumber.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Contact : NSObject
 
-@property (nonatomic, assign) NSString* name;
-@property (nonatomic, assign) NSString* email;
+@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString* email;
+@property (nonatomic, strong) NSMutableArray* phone;
 
 - (instancetype) initWithName: (NSString*)n andEmail: (NSString*)e;
+- (void) addPhone: (PhoneNumber *)p;
 
 @end
 

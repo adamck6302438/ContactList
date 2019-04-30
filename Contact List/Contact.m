@@ -13,10 +13,15 @@
 - (instancetype) initWithName: (NSString*)n andEmail: (NSString*)e {
     self = [super init];
     if(self){
-        self.name = n;
-        self.email = e;
+        _name = n;
+        _email = e;
+        _phone = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+- (void) addPhone: (PhoneNumber *)p{
+    [_phone addObject:p];
 }
 
 @end
