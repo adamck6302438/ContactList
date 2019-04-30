@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
         ContactList* contactList = [[ContactList alloc] init];
         InputCollector* inputCollector = [[InputCollector alloc] init];
         while(true){
-            NSString* operation = [inputCollector inputForPrompt:@"What would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nquit - Exit\nshow - show detail of a contact\nfind - find a contact\nhistory - show the last 3 commands"];
+            NSString* operation = [inputCollector inputForPrompt:@"What would you like to do next?\nnew - Create a new contact\nlist - List all contacts\nquit - Exit\nshow - Show detail of a contact\nfind - Find a contact\nhistory - Show the last 3 commands"];
             if([operation isEqualToString:@"quit"]){
                 break;
             }else if([operation isEqualToString:@"new"]){
@@ -61,9 +61,9 @@ int main(int argc, const char * argv[]) {
                     NSLog(@"%d: %@", index, contact.name);
                     index++;
                 }
-            }else if([operation isEqualToString:@"show"]){
-                [log addObject:operation];
-                NSString* indexString = [inputCollector inputForPrompt:@"Index: "];
+            }else if([operation hasPrefix:@"show"]){
+                [log addObject:@"show"];
+                NSString* indexString = [operation stringByReplacingOccurrencesOfString:@"show " withString:@""];
                 NSInteger index = [indexString integerValue];
                 if(index < 0 || index > contactList.contactList.count-1){
                     NSLog(@"Not found");
@@ -71,15 +71,19 @@ int main(int argc, const char * argv[]) {
                     Contact* search = [contactList.contactList objectAtIndex:index];
                     NSLog(@"%ld: Name: %@\nEmail: %@", index, search.name, search.email);
                 }
-            }else if([operation isEqualToString:@"find"]){
-                [log addObject:operation];
-                NSString* search = [inputCollector inputForPrompt:@"Search term: "];
+            }else if([operation hasPrefix:@"find"]){
+                BOOL found = YES;
+                NSLog(@"%@", operation);
+                [log addObject:@"find"];
+                NSString* search = [operation stringByReplacingOccurrencesOfString:@"find " withString:@""];
                 for(Contact *contact in contactList.contactList){
                     if([search isEqualToString:contact.name] || [contact.email containsString:search]){
                         NSLog(@"Name: %@\nEmail: %@", contact.name, contact.email);
-                    }else{
-                        NSLog(@"Not found");
+                        found = NO;
                     }
+                }
+                if(!found){
+                    NSLog(@"Not found.");
                 }
             }else if([operation isEqualToString:@"history"]){
                 [log addObject:operation];
