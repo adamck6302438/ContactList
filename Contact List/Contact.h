@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Contact : NSObject
 
+@property (nonatomic, assign) NSString* name;
+@property (nonatomic, assign) NSString* email;
+
 @end
 
 NS_ASSUME_NONNULL_END

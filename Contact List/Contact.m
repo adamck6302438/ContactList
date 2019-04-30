@@ -10,4 +10,13 @@
 
 @implementation Contact
 
+- (instancetype) initWithName: (NSString*)n Email: (NSString*)e{
+    self = [super init];
+    if(self){
+        self.name = n;
+        self.email = e;
+    }
+    return self;
+}
+
 @end
